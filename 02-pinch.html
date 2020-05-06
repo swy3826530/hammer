@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>02-pinch</title>
+		<style>
+			* {
+				margin: 0;padding: 0;
+			}
+			#test{
+				width: 375px;height: 300px;
+			}
+			#result{
+				width: 375px;height: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="test">事件区域</div>
+		<div id="result">事件结果</div>
+	</body>
+</html>
+<script type="text/javascript" src="hammer.js/hammer.min.js"></script>
+<script>
+	var result = document.getElementById("result");
+	//创建一个新的hammer对象,并且指定要绑定的dom对象
+	var test = document.getElementById("test");
+	//pinch和rotate事件需要添加如下代码
+	var hammer01 = new Hammer(test);
+	hammer01.add( new Hammer.Pinch());
+	//添加事件:
+	hammer01.on("pinchin",function(event){
+		result.innerHTML += "X偏移量:["+event.deltaX+"],Y偏移量:["+event.deltaY+"]<br/>";
+		console.log(event);
+	})
+</script>
